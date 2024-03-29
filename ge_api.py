@@ -105,7 +105,7 @@ class ge_api:
 		response = requests.get(url, headers = self.auth_headers)
 		return json.loads(response.content)
 
-	def get_metadata_values(self, asset_ids: list|tuple, schemaId: str|int = None):
+	def get_metadata_values(self, asset_ids: list|tuple, schemaId: str|int = None) -> dict:
 		if schemaId == None: schemaId = self.master_schema_id
 		body = json.dumps({
 			'assetIDs':list(asset_ids)
@@ -150,7 +150,6 @@ class ge_api:
 					m_size = s
 					size_diff = size - s 
 			size = m_size
-		
 		headers = self.auth_headers
 		if 'Accept' in headers:
 			del(headers['Accept'])
@@ -162,16 +161,14 @@ class ge_api:
 		
 
 
-	
-
 
 g = ge_api()
-# folders = g.get_workspace_folders('171573')
+folders = g.get_workspace_folders('171573')
 
-assets = g.get_collection_assets(g.ret_input_collection)
+# assets = g.get_collection_assets(g.ret_input_collection)
 
-for i,asset in enumerate(assets):
-	preview_image = g.get_preview_image(asset,1280)
-	mark_up_image = g.get_markup_image(asset)
-	mark_up_image.save(os.path.expanduser(f"~/Desktop/{asset['name']}"))
-	if i > 5: break
+# for i,asset in enumerate(assets):
+# 	preview_image = g.get_preview_image(asset,1280)
+# 	mark_up_image = g.get_markup_image(asset)
+# 	mark_up_image.save(os.path.expanduser(f"~/Desktop/{asset['name']}"))
+# 	if i > 5: break
