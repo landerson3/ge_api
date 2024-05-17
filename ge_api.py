@@ -163,7 +163,7 @@ class ge_api:
 
 
 g = ge_api()
-folders = g.get_workspace_folders('171573')
+folders = g.get_workspace_folders('171542')
 
 # assets = g.get_collection_assets(g.ret_input_collection)
 
